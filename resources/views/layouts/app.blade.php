@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
 <head>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="theme-color" content="#ff6b9d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="{{ asset('icons/icon-192x192.png') }}">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Wibu-POS')</title>
@@ -491,5 +498,19 @@
     </script>
 
     @stack('scripts')
+
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/serviceworker.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
+</script>
 </body>
 </html>

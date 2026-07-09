@@ -53,4 +53,8 @@ Route::middleware(['auth'])->group(function () {
     \Artisan::call('cache:clear');
     return 'Cache & autoload refreshed. Sekarang coba akses /users.';
     });
+
+    Route::get('/offline', function () {
+    return view('offline');
+    })->name('offline');
 });
