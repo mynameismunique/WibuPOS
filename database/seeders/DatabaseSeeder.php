@@ -13,11 +13,31 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-            $this->call([
-            CategorySeeder::class,
-            SupplierSeeder::class,
-            ProductSeeder::class,
-            UserSeeder::class,
+        User::create([
+            'name' => 'Kamisama Wibupos',
+            'email' => 'admin@wibupos.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
         ]);
+
+        User::create([
+            'name' => 'Kasir Chan',
+            'email' => 'kasir@wibupos.com',
+            'password' => Hash::make('password'),
+            'role' => 'cashier',
+        ]);
+
+        User::create([
+            'name' => 'Kasir Sakura',
+            'email' => 'sakura@wibupos.com',
+            'password' => Hash::make('password'),
+            'role' => 'cashier',
+        ]);
+
+        Category::factory(5)->create();
+
+        Supplier::factory(5)->create();
+
+        Product::factory(20)->create();
     }
 }

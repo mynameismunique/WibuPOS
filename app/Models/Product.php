@@ -2,15 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
- 
+    use HasFactory;
 
     protected $fillable = [
-        'code', 'name', 'category_id', 'supplier_id',
-        'purchase_price', 'selling_price', 'stock', 'min_stock', 'description'
+        'code',
+        'name',
+        'category_id',
+        'supplier_id',
+        'purchase_price',
+        'selling_price',
+        'stock',
+        'min_stock',
+        'description'
     ];
 
     public function category()
@@ -32,4 +40,8 @@ class Product extends Model
     {
         return $this->hasMany(PurchaseDetail::class);
     }
+    public function products()
+{
+    return $this->hasMany(Product::class);
+}
 }
